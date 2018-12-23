@@ -1,0 +1,13 @@
+.contai-card {
+    padding: 50px;
+    text-align: center;
+    justify-content: center;
+}
+#text-cardlogin {
+}
+span,h2{
+    font-family: 'Kanit';
+}
+label{
+    font-family: 'Kanit';
+}
