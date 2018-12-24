@@ -28,30 +28,22 @@ class TableScore extends React.Component {
                     <Table color="blue" key="blue">
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell>Food</Table.HeaderCell>
-                                <Table.HeaderCell>Calories</Table.HeaderCell>
-                                <Table.HeaderCell>Protein</Table.HeaderCell>
+                                <Table.HeaderCell>เลขที่หมวด</Table.HeaderCell>
+                                <Table.HeaderCell>ชื่อ - นามสกุล</Table.HeaderCell>
+                                <Table.HeaderCell>เลขที่ความสูง</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
 
                         <Table.Body>
-                            {this.state.dataGroup.map((items, i) =>
+                            { this.props.groupData.map((items, i) =>
                                 <Table.Row>
-                                    <Table.Cell>{items}</Table.Cell>
+                                    <Table.Cell>{items.profile.ground}{items.profile.number}</Table.Cell>
+                                    <Table.Cell>{items.profile.name}  {items.profile.lastname}</Table.Cell>
+                                    <Table.Cell>{items.profile.higthNumber}</Table.Cell>
                                 </Table.Row>
                             )
 
                             }
-                            <Table.Row>
-                                <Table.Cell>Apples</Table.Cell>
-                                <Table.Cell>200</Table.Cell>
-                                <Table.Cell>0g</Table.Cell>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell>Orange</Table.Cell>
-                                <Table.Cell>310</Table.Cell>
-                                <Table.Cell>0g</Table.Cell>
-                            </Table.Row>
                         </Table.Body>
                     </Table>
                 }

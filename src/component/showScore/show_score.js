@@ -22,11 +22,11 @@ class ShowScore extends React.Component {
         this.fetchData(value)
     }
     fetchData(group) {
-        const itemsRef = firebase.database().ref('group').child(group).child('B10');
+        const itemsRef = firebase.database().ref('group').child(group);
         itemsRef.on('value', (snapshot) => {
             let items = snapshot.val();
-            console.log(items)
-            this.setState({ groupData: items ,status_table: true})
+            console.log(Object.values(items))
+            this.setState({ groupData: Object.values(items) ,status_table: true})
 
         })
         console.log(itemsRef)
