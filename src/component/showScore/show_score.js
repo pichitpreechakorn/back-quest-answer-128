@@ -26,37 +26,39 @@ class ShowScore extends React.Component {
         itemsRef.on('value', (snapshot) => {
             let items = snapshot.val();
             console.log(Object.values(items))
-            this.setState({ groupData: Object.values(items) ,status_table: true})
+            this.setState({ groupData: Object.values(items), status_table: true })
 
         })
         console.log(itemsRef)
     }
+
     render() {
         return (
-            <div>
-                <h2 id="head">ดูคะแนน</h2>
-                <div className="dropdown-group">
-                    <Form>
-                        <FormField>
-                            <Dropdown
-                                placeholder='เลือกหมวด'
-                                fluid
-                                selection options={dataGroup}
-                                id="head"
-                                onChange={this.handleChange}
+                <div id="view-home">
+                    <h2 id="head">ดูคะแนน</h2>
+                    <div className="dropdown-group">
+                        <Form>
+                            <FormField>
+                                <Dropdown
+                                    placeholder='เลือกหมวด'
+                                    fluid
+                                    selection options={dataGroup}
+                                    id="head"
+                                    onChange={this.handleChange}
+                                />
+                            </FormField>
+                        </Form>
+                    </div>
+                    <div className="table-score">
+                        {this.state.status_table &&
+                            <TableScore
+                                groupData={this.state.groupData}
                             />
-                        </FormField>
-                    </Form>
-                </div>
-                <div className="table-score">
-                    {this.state.status_table &&
-                        <TableScore
-                            groupData={this.state.groupData}
-                        />
-                    }
+                        }
+                    </div>
+
                 </div>
 
-            </div>
         );
     }
 }

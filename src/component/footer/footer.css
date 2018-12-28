@@ -1,0 +1,35 @@
+.text-copyrigth {
+    padding: 20px;
+    justify-content: center;
+    flex-direction: column;
+    text-align: right;
+    color: #000;
+    font-family: 'Kanit';
+}
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+.guurun-logo {
+    margin: 5px;
+    height: 20px;
+}
+  
+.i-bitz-logo {
+    margin: 5px;
+    height: 30px;
+}
+.footer-bg{
+    margin-top: 20%;
+    background-color: #fff;
+    height: 10%;
+    vertical-align: sub;
+}
+#facebook {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}

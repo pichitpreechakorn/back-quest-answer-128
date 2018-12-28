@@ -3,7 +3,9 @@ import { Container, Row, Col } from 'reactstrap'
 import NavBar from '../nav/nav'
 import CardLogin from '../card/card_login'
 import ShowScore from '../showScore/show_score'
+import Footer from '../footer/footer'
 import './home.css'
+import '../../App.css'
 
 class Home extends React.Component {
     constructor(props) {
@@ -14,7 +16,7 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="App">
                 <NavBar />
                 <Container>
                     <Row>
@@ -25,10 +27,12 @@ class Home extends React.Component {
                             </div>
                         </Col>
                     </Row>
-
+                    <div className="footer">
+                        <Footer />
+                    </div>
                 </Container>
-
             </div>
+
         );
     }
 }
