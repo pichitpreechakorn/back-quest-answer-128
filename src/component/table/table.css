@@ -20,5 +20,6 @@ Table.Cell{
     color: green;
 }
 .table-score {
+    size: 20px;
     text-align: center;
 }

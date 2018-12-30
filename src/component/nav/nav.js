@@ -10,7 +10,8 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem
+} from 'reactstrap';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -29,8 +30,10 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">ระบบตรวจสอบคะแนน</NavbarBrand>
+        <Navbar color="dark" dark expand="md">
+          <NavbarBrand href="/">
+            <span>ระบบตรวจสอบคะแนนการอบรม 128 คะแนน</span>
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           {/* <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

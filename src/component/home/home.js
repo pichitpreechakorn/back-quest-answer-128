@@ -18,7 +18,15 @@ class Home extends React.Component {
         return (
             <div className="App">
                 <NavBar />
+                {/* <div className="App-header">
+                    <h1>ระบบ</h1>
+                </div> */}
                 <Container>
+                    <Row>
+                        <Col md="12" sm="12" xs="12">
+
+                        </Col>
+                    </Row>
                     <Row>
                         <Col md="12" sm="12" xs="12">
                             <div id="card-login">

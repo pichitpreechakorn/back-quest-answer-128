@@ -35,7 +35,7 @@ class ShowScore extends React.Component {
     render() {
         return (
                 <div id="view-home">
-                    <h2 id="head">ดูคะแนน</h2>
+                    <h1 id="head">ดูคะแนนทั้งหมดของ เเต่ละหมวด</h1>
                     <div className="dropdown-group">
                         <Form>
                             <FormField>
