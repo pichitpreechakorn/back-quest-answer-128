@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table, Button, Icon, Message } from 'semantic-ui-react'
-import { Modal, ModalFooter, ModalBody, ModalHeader } from 'reactstrap'
+import { Modal, ModalFooter, ModalBody, ModalHeader, Progress } from 'reactstrap'
 import dataQuest from '../../data/dataQuest'
 import dataFail from '../../data/dataFail'
 import MessageSuscess from '../messege/messege_positive'
@@ -19,24 +19,57 @@ class TableScore extends React.Component {
             status_table: false,
             dataGroup: [],
             open: false,
-            number: 0
+            per_success: 1,
+            per_info: 1,
+            per_warning: 1,
+            per_fail: 1
         }
     }
-
+    componentDidUpdate(nextProps) {
+        if (nextProps.groupData !== this.props.groupData) {
+            this.sumPercent()
+        }
+    }
     componentDidMount() {
-        let number = 0
-        let data = this.props.groupData
-        console.log(this.props.groupData)
+        this.sumPercent()
         console.log(Object.assign(this.props.groupData))
         this.setState({ dataGroup: this.props.groupData.profile, status_table: true })
-        // this.props.groupData.map((items, i) => {
-        //     console.log(items.fail[i].qust)
-        // })
+
+    }
+    sumPercent() {
+        let success = 0
+        let info = 0
+        let warning = 0
+        let fail = 0
+        for (let index = 0; index < this.props.groupData.length; index++) {
+            if (this.props.groupData[index].score === 2) {
+                success = success + 1
+                console.log(success)
+            }
+            else if (this.props.groupData[index].score === 1) {
+                info = info + 1
+            }
+            else if (this.props.groupData[index].score === 1) {
+                warning = warning + 1
+            }
+            else if (this.props.groupData[index].score === 0 || this.props.groupData[index].score === null || this.props.groupData[index].score === undefined) {
+                fail = fail + 1
+            }
+        }
+        console.log(success, info, warning, fail)
+        this.setState({ per_success: success, per_info: info, per_warning: warning, per_fail: fail })
     }
     render() {
         let data = this.props.groupData
         return (
             <div className="table-score">
+                <Progress multi>
+                    <Progress bar animated value={this.state.per_fail} > 0-80 </Progress>
+                    <Progress bar animated color="warning" value={this.state.per_warning}> 81-100 </Progress>
+                    <Progress bar animated color="info" value={this.state.per_info}> 101-127 </Progress>
+                    <Progress bar animated color="success" value={this.state.per_success}> 128 </Progress>
+
+                </Progress>
                 {this.state.status_table &&
                     <Table color="blue" key="blue">
                         <Table.Header>

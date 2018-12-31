@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap'
+import { Container, Row, Col, Progress } from 'reactstrap'
 import { Dropdown, Form, FormField } from 'semantic-ui-react'
 import TableScore from '../table/table_score'
 import dataGroup from '../../data/dataGroup'
@@ -34,30 +34,30 @@ class ShowScore extends React.Component {
 
     render() {
         return (
-                <div id="view-home">
-                    <h1 id="head">ดูคะแนนทั้งหมดของ เเต่ละหมวด</h1>
-                    <div className="dropdown-group">
-                        <Form>
-                            <FormField>
-                                <Dropdown
-                                    placeholder='เลือกหมวด'
-                                    fluid
-                                    selection options={dataGroup}
-                                    id="head"
-                                    onChange={this.handleChange}
-                                />
-                            </FormField>
-                        </Form>
-                    </div>
-                    <div className="table-score">
-                        {this.state.status_table &&
-                            <TableScore
-                                groupData={this.state.groupData}
+            <div id="view-home">
+                <h1 id="head">ดูคะแนนทั้งหมดของ เเต่ละหมวด</h1>
+                <div className="dropdown-group">
+                    <Form>
+                        <FormField>
+                            <Dropdown
+                                placeholder='เลือกหมวด'
+                                fluid
+                                selection options={dataGroup}
+                                id="head"
+                                onChange={this.handleChange}
                             />
-                        }
-                    </div>
-
+                        </FormField>
+                    </Form>
                 </div>
+                <div className="table-score">
+                    {this.state.status_table &&
+                        <TableScore
+                            groupData={this.state.groupData}
+                        />
+                        }
+                </div>
+
+            </div>
 
         );
     }
