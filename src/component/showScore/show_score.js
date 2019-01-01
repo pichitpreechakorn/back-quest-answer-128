@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Progress } from 'reactstrap'
-import { Dropdown, Form, FormField } from 'semantic-ui-react'
+import { Dropdown, Form, FormField, Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
 import TableScore from '../table/table_score'
 import dataGroup from '../../data/dataGroup'
 import firebase from 'firebase'
@@ -13,6 +13,7 @@ class ShowScore extends React.Component {
         this.state = {
             name: "",
             status_table: false,
+            loading: false,
             groupData: []
         };
         firebase.initializeApp(firebaseConfig)
@@ -26,8 +27,10 @@ class ShowScore extends React.Component {
         itemsRef.on('value', (snapshot) => {
             let items = snapshot.val();
             console.log(Object.values(items))
-            this.setState({ groupData: Object.values(items), status_table: true })
-
+            this.setState({ groupData: Object.values(items), loading: true })
+            setTimeout(() => {
+                this.setState({ status_table: true, loading: false })
+            }, 1500)
         })
         console.log(itemsRef)
     }
@@ -50,13 +53,18 @@ class ShowScore extends React.Component {
                     </Form>
                 </div>
                 <div className="table-score">
+                    {this.state.loading &&
+
+                        <Loader active inline='centered'><span id="head">เตรียมข้อมูลลายชื่อ</span></Loader>
+                    }
                     {this.state.status_table &&
                         <TableScore
                             groupData={this.state.groupData}
                         />
-                        }
-                </div>
+                    }
 
+
+                </div>
             </div>
 
         );

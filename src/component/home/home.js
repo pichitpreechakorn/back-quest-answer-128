@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap'
+import { Button } from 'semantic-ui-react'
 import NavBar from '../nav/nav'
 import CardLogin from '../card/card_login'
 import ShowScore from '../showScore/show_score'
@@ -17,10 +18,16 @@ class Home extends React.Component {
     render() {
         return (
             <div className="App">
-                <NavBar />
-                {/* <div className="App-header">
-                    <h1>ระบบ</h1>
-                </div> */}
+                {/* <NavBar /> */}
+                <div className="App-header">
+                    <h1 id="title">ระบบตรวจสอบคะแนนการสอนอมรม 128 ข้อ</h1>
+                    <a href="#card-login">
+                        <Button inverted color='green' size="big">
+                            <span id="title">ตรวจสอบคะแนน</span>
+                        </Button>
+                    </a>
+
+                </div>
                 <Container>
                     <Row>
                         <Col md="12" sm="12" xs="12">

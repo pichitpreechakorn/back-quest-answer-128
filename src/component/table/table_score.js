@@ -1,12 +1,10 @@
 import React from 'react'
-import { Table, Button, Icon, Message } from 'semantic-ui-react'
-import { Modal, ModalFooter, ModalBody, ModalHeader, Progress } from 'reactstrap'
+import { Table, Button, Icon, Message,Progress } from 'semantic-ui-react'
+// import { Modal, ModalFooter, ModalBody, ModalHeader, Progress } from 'reactstrap'
 import dataQuest from '../../data/dataQuest'
 import dataFail from '../../data/dataFail'
 import MessageSuscess from '../messege/messege_positive'
-import MessageFail from '../messege/messege_negative'
-import MessageInfo from '../messege/messege_info'
-import MessageWarn from '../messege/messege_warning'
+
 import './table_score'
 const test = [
 
@@ -43,17 +41,19 @@ class TableScore extends React.Component {
         let fail = 0
         for (let index = 0; index < this.props.groupData.length; index++) {
             if (this.props.groupData[index].score === 2) {
-                success = success + 1
+                success = ((success + 1) * 100) / 44
                 console.log(success)
             }
             else if (this.props.groupData[index].score === 1) {
-                info = info + 1
+                info = ((info + 1) * 100) / 44
+
             }
             else if (this.props.groupData[index].score === 1) {
-                warning = warning + 1
+                warning = ((warning + 1) * 100) / 44
             }
             else if (this.props.groupData[index].score === 0 || this.props.groupData[index].score === null || this.props.groupData[index].score === undefined) {
-                fail = fail + 1
+                fail = ((fail + 1) * 100) / 44
+                console.log(fail)
             }
         }
         console.log(success, info, warning, fail)
@@ -63,13 +63,26 @@ class TableScore extends React.Component {
         let data = this.props.groupData
         return (
             <div className="table-score">
-                <Progress multi>
-                    <Progress bar animated value={this.state.per_fail} > 0-80 </Progress>
+                {/* <Progress multi>
+                    <Progress bar animated color="danger" value={this.state.per_fail} > 0-80 </Progress>
                     <Progress bar animated color="warning" value={this.state.per_warning}> 81-100 </Progress>
                     <Progress bar animated color="info" value={this.state.per_info}> 101-127 </Progress>
                     <Progress bar animated color="success" value={this.state.per_success}> 128 </Progress>
 
+                </Progress> */}
+                <Progress percent={this.state.per_fail} active size='large' color='red' >
+                    Active
                 </Progress>
+                <Progress percent={this.state.per_warning} active size='large' color='orange'>
+                    Active
+                </Progress>
+                <Progress percent={this.state.per_info} active size='large' color='blue'>
+                    Active
+                </Progress>
+                <Progress percent={this.state.per_success} active size='large' color='green'>
+                    Active
+                </Progress>
+                
                 {this.state.status_table &&
                     <Table color="blue" key="blue">
                         <Table.Header>
