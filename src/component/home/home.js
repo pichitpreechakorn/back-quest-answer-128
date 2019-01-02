@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap'
-import { Button } from 'semantic-ui-react'
+import { Button, Image } from 'semantic-ui-react'
 import NavBar from '../nav/nav'
 import CardLogin from '../card/card_login'
 import ShowScore from '../showScore/show_score'
@@ -16,17 +16,21 @@ class Home extends React.Component {
     }
 
     render() {
+        let imgUrl = 'https://campus.campus-star.com/app/uploads/2017/03/edu144.jpg';
+
         return (
             <div className="App">
                 {/* <NavBar /> */}
                 <div className="App-header">
-                    <h1 id="title">ระบบตรวจสอบคะแนนการสอนอมรม 128 ข้อ</h1>
-                    <a href="#card-login">
-                        <Button inverted color='green' size="big">
-                            <span id="title">ตรวจสอบคะแนน</span>
-                        </Button>
-                    </a>
-
+                    <Image src='https://campus.campus-star.com/app/uploads/2017/03/edu144.jpg' fluid id="bg"/>
+                    <div className="in-bg">
+                        <h1 id="title">ระบบตรวจสอบคะแนนการสอนอมรม 128 ข้อ</h1>
+                        <a href="#card-login">
+                            <Button inverted color='grey' size="huge">
+                                <span id="title">ตรวจสอบคะแนน</span>
+                            </Button>
+                        </a>
+                    </div>
                 </div>
                 <Container>
                     <Row>

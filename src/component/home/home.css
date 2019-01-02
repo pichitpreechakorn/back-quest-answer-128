@@ -4,3 +4,10 @@
 #title{
     font-family: 'Kanit';
 }
+.in-bg {
+    top: 50%;
+    position: absolute;
+}
+#bg {
+    opacity: 0.5;
+}

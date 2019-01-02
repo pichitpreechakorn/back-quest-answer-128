@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Button, Icon, Message,Progress } from 'semantic-ui-react'
+import { Table, Button, Icon, Message, Progress } from 'semantic-ui-react'
 // import { Modal, ModalFooter, ModalBody, ModalHeader, Progress } from 'reactstrap'
 import dataQuest from '../../data/dataQuest'
 import dataFail from '../../data/dataFail'
@@ -17,10 +17,10 @@ class TableScore extends React.Component {
             status_table: false,
             dataGroup: [],
             open: false,
-            per_success: 1,
-            per_info: 1,
-            per_warning: 1,
-            per_fail: 1
+            per_success: 0,
+            per_info: 0,
+            per_warning: 0,
+            per_fail: 0
         }
     }
     componentDidUpdate(nextProps) {
@@ -40,16 +40,20 @@ class TableScore extends React.Component {
         let warning = 0
         let fail = 0
         for (let index = 0; index < this.props.groupData.length; index++) {
-            if (this.props.groupData[index].score === 2) {
+            if (this.props.groupData[index].score === 128) {
                 success = ((success + 1) * 100) / 44
                 console.log(success)
             }
-            else if (this.props.groupData[index].score === 1) {
+            else if (this.props.groupData[index].score >= 101 && this.props.groupData[index].score <= 127) {
                 info = ((info + 1) * 100) / 44
 
             }
-            else if (this.props.groupData[index].score === 1) {
+            else if (this.props.groupData[index].score >= 81 && this.props.groupData[index].score <= 100) {
                 warning = ((warning + 1) * 100) / 44
+            }
+            else if (this.props.groupData[index].score >= 0 && this.props.groupData[index].score <= 80) {
+                fail = ((fail + 1) * 100) / 44
+                console.log(fail)
             }
             else if (this.props.groupData[index].score === 0 || this.props.groupData[index].score === null || this.props.groupData[index].score === undefined) {
                 fail = ((fail + 1) * 100) / 44
@@ -82,7 +86,7 @@ class TableScore extends React.Component {
                 <Progress percent={this.state.per_success} active size='large' color='green'>
                     Active
                 </Progress>
-                
+
                 {this.state.status_table &&
                     <Table color="blue" key="blue">
                         <Table.Header>
@@ -97,7 +101,7 @@ class TableScore extends React.Component {
 
                         <Table.Body>
                             {this.props.groupData.map((items, i) =>
-                                items.score >= 2 ?
+                                items.score === 128 ?
                                     <Table.Row positive textAlign='center' >
                                         <Table.Cell><label>{items.profile.ground}{items.profile.number}</label></Table.Cell>
                                         <Table.Cell><label>{items.profile.name}  {items.profile.lastname}</label></Table.Cell>
@@ -105,20 +109,28 @@ class TableScore extends React.Component {
                                         <Table.Cell><label>{items.score} / 128</label></Table.Cell>
                                     </Table.Row>
                                     :
-                                    items.score <= 1 ?
-                                        <Table.Row warning textAlign='center' >
+                                    items.score >= 101 && items.score <= 127 ?
+                                        <Table.Row info textAlign='center' >
                                             <Table.Cell><label>{items.profile.ground}{items.profile.number}</label></Table.Cell>
                                             <Table.Cell><label>{items.profile.name}  {items.profile.lastname}</label></Table.Cell>
                                             <Table.Cell><label>{items.profile.higthNumber}</label></Table.Cell>
                                             <Table.Cell><label>{items.score} / 128</label></Table.Cell>
                                         </Table.Row>
                                         :
-                                        <Table.Row negative textAlign='center' >
-                                            <Table.Cell><label>{items.profile.ground}{items.profile.number}</label></Table.Cell>
-                                            <Table.Cell><label>{items.profile.name}  {items.profile.lastname}</label></Table.Cell>
-                                            <Table.Cell><label>{items.profile.higthNumber}</label></Table.Cell>
-                                            <Table.Cell><label>{items.score} / 128</label></Table.Cell>
-                                            {/* <Table.Cell>
+                                        items.score >= 81 && items.score <= 100 ?
+                                            <Table.Row warning textAlign='center' >
+                                                <Table.Cell><label>{items.profile.ground}{items.profile.number}</label></Table.Cell>
+                                                <Table.Cell><label>{items.profile.name}  {items.profile.lastname}</label></Table.Cell>
+                                                <Table.Cell><label>{items.profile.higthNumber}</label></Table.Cell>
+                                                <Table.Cell><label>{items.score} / 128</label></Table.Cell>
+                                            </Table.Row>
+                                            :
+                                            <Table.Row negative textAlign='center' >
+                                                <Table.Cell><label>{items.profile.ground}{items.profile.number}</label></Table.Cell>
+                                                <Table.Cell><label>{items.profile.name}  {items.profile.lastname}</label></Table.Cell>
+                                                <Table.Cell><label>{items.profile.higthNumber}</label></Table.Cell>
+                                                <Table.Cell><label>{items.score} / 128</label></Table.Cell>
+                                                {/* <Table.Cell>
                                         <Button icon labelPosition='left' color="green" onClick={() => this.setState({ open: true, number : i })}>
                                             <label>ดูข้อที่ตอบถูก</label>
                                             <Icon name='check' />
@@ -130,7 +142,7 @@ class TableScore extends React.Component {
                                             <Icon name='delete' />
                                         </Button>
                                     </Table.Cell> */}
-                                        </Table.Row>
+                                            </Table.Row>
                             )
 
                             }
