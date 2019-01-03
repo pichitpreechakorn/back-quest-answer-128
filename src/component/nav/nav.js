@@ -12,8 +12,11 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
+import { Image} from 'semantic-ui-react'
+import './nav.css'
 
-class NavBar extends React.Component {
+
+export default class Example extends React.Component {
   constructor(props) {
     super(props);
 
@@ -30,20 +33,24 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark expand="md">
-          <NavbarBrand href="/">
-            <span>ระบบตรวจสอบคะแนนการอบรม 128 คะแนน</span>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/" id="text-head">
+            <img src="download.jpg" id="logo" />
+            หน่วยฝึกทหารใหม่ กองพันทหารราบบที่ 2 กรมทหารราบที่ 7
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
-          {/* <Collapse isOpen={this.state.isOpen} navbar>
+          <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <NavLink href="/components/" id="text-head">คำแนะนำ</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink href="http://www.suddan7002.com/" id="text-head" target="_blank">ติดต่อ</NavLink>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
+              <NavItem>
+                <NavLink href="https://github.com/reactstrap/reactstrap" id="text-head">เกี่ยวกับ</NavLink>
+              </NavItem>
+              {/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options
                 </DropdownToggle>
@@ -59,12 +66,11 @@ class NavBar extends React.Component {
                     Reset
                   </DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown>
+              </UncontrolledDropdown> */}
             </Nav>
-          </Collapse> */}
+          </Collapse>
         </Navbar>
       </div>
     );
   }
 }
-export default NavBar

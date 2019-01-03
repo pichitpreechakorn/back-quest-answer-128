@@ -20,7 +20,7 @@ class Home extends React.Component {
 
         return (
             <div className="App">
-                {/* <NavBar /> */}
+                <NavBar />
                 <div className="App-header">
                     <Image src='https://campus.campus-star.com/app/uploads/2017/03/edu144.jpg' fluid id="bg"/>
                     <div className="in-bg">
